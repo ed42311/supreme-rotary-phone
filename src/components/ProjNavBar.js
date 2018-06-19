@@ -15,6 +15,7 @@ export default class Example extends React.Component {
     super(props);
 
     this.toggle = this.toggle.bind(this);
+    this.hello = this.hello.bind(this);
     this.state = {
       isOpen: false
     };
@@ -24,16 +25,21 @@ export default class Example extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
+
+  hello() {
+    console.log("hello")
+  }
+
   render() {
     return (
       <div>
-        <Navbar color="dark" light expand="md">
+        <Navbar color="light" light expand="md">
           <NavbarBrand tag={Link} to="/">Sweet Project</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink tag={Link} to="/">Home</NavLink>
+                <NavLink tag={Link} to="/" onClick={this.hello}>Home</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag={Link} to="/test">Test</NavLink>
