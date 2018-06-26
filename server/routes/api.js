@@ -10,4 +10,10 @@ router.get('/dashboard', (req, res) => {
   });
 });
 
+router.get('/profile', (req, res) => {
+  res.status(200).json({
+    user: req.user
+  });
+});
+
 module.exports = router;

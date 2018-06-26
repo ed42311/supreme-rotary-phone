@@ -6,6 +6,7 @@ import LoginPage from '../containers/LoginPage.js';
 import LogoutFunction from '../containers/LogoutFunction.js';
 import SignUpPage from '../containers/SignUpPage.js';
 import DashboardPage from '../containers/DashboardPage.js';
+import ProfilePage from '../containers/ProfilePage.js';
 import Auth from '../modules/Auth';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -40,33 +41,17 @@ const PropsRoute = ({ component: Component, ...rest }) => (
   )}/>
 )
 
-class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      authenticated: false
-    }
-  };
-
-  componentDidMount() {
-    this.toggleAuthenticateStatus()
-  }
-
-  toggleAuthenticateStatus() {
-    this.setState({ authenticated: Auth.isUserAuthenticated() })
-  }
-
-  render() {
-    return (
-      <main>
-        <PropsRoute exact path="/" component={HomePage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
-        <PrivateRoute path="/dashboard" component={DashboardPage}/>
-        <LoggedOutRoute path="/login" component={LoginPage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
-        <LoggedOutRoute path="/signup" component={SignUpPage}/>
-        <Route path="/logout" component={LogoutFunction}/>
-      </main>
-    );
-  }
-}
+const Main = ({
+  toggleAuthenticateStatus
+}) => (
+    <main>
+      <PropsRoute exact path="/" component={HomePage} toggleAuthenticateStatus={toggleAuthenticateStatus} />
+      <PrivateRoute path="/dashboard" component={DashboardPage}/>
+      <PrivateRoute path="/profile" component={ProfilePage}/>
+      <LoggedOutRoute path="/login" component={LoginPage} toggleAuthenticateStatus={toggleAuthenticateStatus} />
+      <LoggedOutRoute path="/signup" component={SignUpPage}/>
+      <Route path="/logout" component={LogoutFunction}/>
+    </main>
+)
 
 export default Main;

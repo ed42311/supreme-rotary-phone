@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Auth from '../modules/Auth';
 import LoginForm from '../components/LoginForm';
 
-class LoginPage extends React.Component {
+class LoginPage extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -51,9 +51,21 @@ class LoginPage extends React.Component {
     .then ( res => res.json() )
     .then ( ( data ) => {
       if(data.success) {
-        
-      } else {
+        this.setState({
+          errors: {}
+        });
 
+        Auth.authenticateUser(data.token);
+        this.props.toggleAuthenticateStatus()
+        this.props.history.push('/dashboard');
+      } else {
+        const errors = data.errors ?  data.errors : {};
+        errors.summary = data.message;
+
+        this.setState({
+          errors
+        });
+        this.props.history.push('/home');
       }
     })
   }

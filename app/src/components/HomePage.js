@@ -1,29 +1,23 @@
-import  React, { Component } from 'react';
-import { Card, CardTitle, CardSubtitle, CardText, CardBody} from 'reactstrap';
+import  React from 'react';
+import { Jumbotron} from 'reactstrap';
 import Auth from '../modules/Auth';
 
-class HomePage extends Component {
+const HomePage = () => (
+  <Jumbotron className="text-center">
+    <h1 className="display-3">Bicycle Bonanza</h1>
+    <p className="lead">
+      This is the home page.
+    </p>
+    <hr className="my-2" />
+    {Auth.isUserAuthenticated() ? (
+      <h3 style={{ fontSize: '16px', color: 'green' }}>Welcome! You are logged in.</h3>
+    ) : (
+      <h3 style={{ fontSize: '16px', color: 'green' }}>You are not logged in.</h3>
+    )}
+  </Jumbotron>
+)
 
-  componentDidMount() {
-    console.log(this.props);
-    this.props.toggleAuthenticateStatus()
-  }
 
-  render() {
-    return (
-      <Card className="container">
-        <CardBody>
-          <CardTitle>React Application</CardTitle>
-          <CardSubtitle>This is the home page.</CardSubtitle>
-            {Auth.isUserAuthenticated() ? (
-              <CardText style={{ fontSize: '16px', color: 'green' }}>Welcome! You are logged in.</CardText>
-            ) : (
-              <CardText style={{ fontSize: '16px', color: 'green' }}>You are not logged in.</CardText>
-            )}
-        </CardBody>
-      </Card>
-    )
-  }
-};
+
 
 export default HomePage;

@@ -43,27 +43,23 @@ class SignUpPage extends React.Component {
     })
     .then ( res => res.json() )
     .then ( ( data ) => {
-      // console.log(data);
-      // if (data.status === 200) {
-      //
-      //   this.setState({
-      //     errors: {}
-      //   });
-      //
-      //   // set a message
-      //   localStorage.setItem('successMessage', data.message);
-      //
-      //   this.props.history.push('/login');
-      // } else {
-      //   console.log("not working");
-      // }
+      console.log(data);
+      if (data.status) {
+        this.setState({
+          errors: {}
+        });
+
+        localStorage.setItem('successMessage', data.message);
+        this.props.history.push('/login');
+      } else {
+        console.log("not working");
+      }
     })
   }
 
 
 
   /**
-   * Change the user object.
    *
    * @param {object} event - the JavaScript event object
    */
@@ -77,9 +73,6 @@ class SignUpPage extends React.Component {
     });
   }
 
-  /**
-   * Render the component.
-   */
   render() {
     return (
       <SignUpForm
@@ -90,7 +83,6 @@ class SignUpPage extends React.Component {
       />
     );
   }
-
 }
 
 SignUpPage.contextTypes = {

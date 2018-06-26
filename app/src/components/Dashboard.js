@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Card, CardTitle, CardSubtitle, CardText, CardBody } from 'reactstrap';
 
 const Dashboard = ({ secretData, user }) => (
-  <Card className="container">
+  <Card className="topPadding container">
      <CardBody>
        <CardTitle>Dashboard</CardTitle>
        <CardSubtitle>You should get access to this page only after authentication.</CardSubtitle>

@@ -11,7 +11,7 @@ const LoginForm = ({
   user,
   toggleAuthenticateStatus
 }) => (
-  <Card className="container">
+  <Card className="topPadding container">
     <Form onSubmit={onSubmit}>
       <h2 className="card-heading">Login</h2>
       {successMessage && <p className="success-message">{successMessage}</p>}
@@ -22,7 +22,6 @@ const LoginForm = ({
             type="email"
             name="email"
             id="exampleEmail"
-            placeholder="with a placeholder"
             onChange={onChange}
           />
         </FormGroup>
@@ -32,7 +31,6 @@ const LoginForm = ({
             type="password"
             name="password"
             id="examplePassword"
-            placeholder="password placeholder"
             onChange={onChange}
           />
         </FormGroup>
