@@ -38,7 +38,7 @@ function validateSignupForm(payload) {
   return {
     success: isFormValid,
     message,
-    errors
+    errors 
   };
 }
 

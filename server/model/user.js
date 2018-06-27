@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const Schema = mongoose.Schema;
+const Image = require('./image');
+const File = require('./file');
 
 // define the User model schema
 const UserSchema = new mongoose.Schema({
@@ -8,7 +11,9 @@ const UserSchema = new mongoose.Schema({
     index: { unique: true }
   },
   password: String,
-  name: String
+  name: String,
+  images: [{ type: Schema.Types.ObjectId, ref: 'Image' }],
+  files: [{ type: Schema.Types.ObjectId, ref: 'File' }]
 });
 
 

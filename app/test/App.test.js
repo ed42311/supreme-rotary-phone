@@ -7,3 +7,21 @@ it('renders without crashing', () => {
   ReactDOM.render(<App />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
+
+<ProfileForm
+     onChange={this.onChange}
+     onSubmit={this.processForm}
+     user={this.state.user}
+   />
+{
+  this.state.editing ?
+    <Profile
+      user={this.state.user}
+    />
+  :
+    <ProfileForm
+      onChange={this.onChange}
+      onSubmit={this.processForm}
+      user={this.state.user}
+    />
+}

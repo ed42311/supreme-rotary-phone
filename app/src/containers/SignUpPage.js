@@ -44,16 +44,16 @@ class SignUpPage extends React.Component {
     .then ( res => res.json() )
     .then ( ( data ) => {
       console.log(data);
-      if (data.status) {
-        this.setState({
-          errors: {}
-        });
-
-        localStorage.setItem('successMessage', data.message);
-        this.props.history.push('/login');
-      } else {
-        console.log("not working");
-      }
+      // if (data.status) {
+      //   this.setState({
+      //     errors: {}
+      //   });
+      //
+      //   localStorage.setItem('successMessage', data.message);
+      //   this.props.history.push('/login');
+      // } else {
+      //   console.log("not working");
+      // }
     })
   }
 

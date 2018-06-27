@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import NavBarMeta from '../containers/NavBarMeta.js';
+import ProjNavBar from './ProjNavBar.js';
 import Main from './Main.js'
 import Auth from '../modules/Auth'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,24 +9,32 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isOpen: false,
       authenticated: false
     }
+    this.toggleNav = this.toggleNav.bind(this);
   };
-
-  componentDidMount() {
-    this.toggleAuthenticateStatus()
-  }
 
   toggleAuthenticateStatus() {
     this.setState({ authenticated: Auth.isUserAuthenticated() })
   }
 
+  toggleNav() {
+    this.setState({ isOpen: !this.state.isOpen });
+  }
+
+  componentDidMount() {
+    this.toggleAuthenticateStatus()
+  }
+
   render() {
     return (
       <div >
-        <NavBarMeta
+        <ProjNavBar
+          toggleNav={this.toggleNav}
+          isOpen={this.state.isOpen}
           authenticated={this.state.authenticated}
-         />
+        />
         <Main
           toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()}
         />
